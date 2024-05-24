@@ -1,0 +1,46 @@
+############################################################################
+Brand New folder in vscode and upload it in vs code 
+############################################################################
+
+1. create a repo in github 
+   repo link eg : https://github.com/Anshul905/Namaste-react.git
+
+######## in vs code now ########
+
+2. git branch -m master main     
+   change local branch name ( master to main )
+
+3. git init                                                      
+   start tracking current directory
+4. git add -A                                          
+   add all files in current directory to staging area, making them available for commit
+5. git commit -m "commit message"                                
+   commit your changes
+
+6. git remote add origin https://github.com/username/repo-name.git    
+   eg : git remote add origin https://github.com/Anshul905/Important.git
+   add remote repository URL which contains the required details
+
+8. git pull origin main                              
+   always pull from remote before pushing
+
+9. git push -u origin main   
+   git push -f origin main   <== for forcefully if -u does not work 
+
+############################################################################
+
+once you are done with setting up your remote origin 
+1. git add .
+2. git commit -m "msg"
+3. git push -u origin main
+   git push -f origin main  ( forcefully )
+
+
+
+
+
+######################### ADDITIONAL #########################
+explain point no. 2 
+git branch main master ( vscode ke master se main  rename )
+github me when you create README.md file , default branch becomes main 
+and vs code ka default master hota hai ( so rename it in vs code master to main , github me bhi default ko rename kar sakte ho but better to do it )
