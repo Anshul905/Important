@@ -2,16 +2,16 @@
 Brand New folder in vscode and upload it in vs code 
 ############################################################################
 
-1. create a repo in github 
+1. create a repo in GitHub 
    repo link eg : https://github.com/Anshul905/Namaste-react.git
 
 ######## in vs code now ########
 
+2. git init                                                      
+   start tracking the current directory
+
 2. git branch -m master main     
    change local branch name ( master to main )
-
-3. git init                                                      
-   start tracking current directory
 4. git add -A                                          
    add all files in current directory to staging area, making them available for commit
 5. git commit -m "commit message"                                
@@ -22,7 +22,7 @@ Brand New folder in vscode and upload it in vs code
    add remote repository URL which contains the required details
 
 8. git pull origin main                              
-   always pull from remote before pushing
+   always pull from the remote before pushing
 
 9. git push -u origin main   
    git push -f origin main   <== for forcefully if -u does not work 
