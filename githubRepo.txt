@@ -1,0 +1,15 @@
+# below is example -  when you just create repo in github 
+ 
+echo "# express" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Anshul905/express.git
+git push -u origin main
+
+# below is example - when you have already commited code and you want to push it 
+
+git remote add origin https://github.com/Anshul905/express.git
+git branch -M main
+git push -u origin main
