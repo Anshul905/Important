@@ -25,10 +25,10 @@ content: [
 @tailwind components;
 @tailwind utilities;
 
-####### Start your build process
-npm run dev 
-
+###############
+npm run dev --> to start build process  
 Ctrl + o --> to open in terminal 
+###############
 
 ###################################################
 
