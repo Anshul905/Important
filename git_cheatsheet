@@ -1,3 +1,10 @@
 ############# Add new changes to previous commit #############
 git add .
 git commit --amend --no-edit
+
+############# Rename last commit #############
+git commit --amend -m "New commit message."
+
+############# discard all changes in your working directory and revert to the state of the last commit #############
+git reset --hard 
+git reset --hard <commit-hash>
