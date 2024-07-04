@@ -1,1 +1,102 @@
+It displays all the commits being made in that repository in multiple lines along with the commit id, author name, date and commit message.
+
+git log
+
+############### limit your logs to n commits. 
+git log -n
+
+
+############### Oneline log
+git log --oneline
+git log --oneline -3
+
+############### Prettier log( to see the logs in a very decorated, neat, and clean manner )
+git log --decorate --oneline --graph
+
+############### Colorize logs ( to see the logs in a colorized fashion or to customize the  log output format ) 
+git log --graph ---pretty=format: '%C(red)%h%Creset  -%C(yellow)%d%Creset %s %C(green)(%cr)%C(yellow)<%an>%Creset'
+
+
+############### Assign an alias to this command
+can name alias for command which very big to write 
+
+git config --global alias.name_of_alias "command_name"
+examples -  
+git config --global alias.logDikha "log --decorate --oneline --graph"
+git config --global alias.dangSePrintKaro "log --graph ---pretty=format: '%C(red)%h%Creset  -%C(yellow)%d%Creset %s %C(green)(%cr)%C(yellow)<%an>%Creset'"
+
+
+############### Others 
+see the files in logs that are being committed by commits
+git log --stat 
+
+view the contents of a commit
+git show <commit-id>
+
+
+
+
+############################## Commands ##############################
+git log
+git log -n
+git log --oneline
+git log --oneline --graph 
+git log --decorate --oneline --graph
+git log --decorate --oneline --graph -all
+
+
+
+
+
+############################## RARELY USEFUL ##############################
+
+
+############### Filter logs ( --after or --since , --author ) 
+git log --since=<date> --until=<date>
+git log –-author=”Author_name”
+
+For some days and specific dates  
+git log -–after ‘mention the days ago’ 
+git log –-after year_number-month_number-date_number
+examples - 
+  git log -–after ‘4 days ago’
+  git log -–since ‘1 month ago’
+  git log -–after 2024-07-05
+  git log -–since 2024-07-05 -–since 2024-07-05
+
+For Author name ( some part of name )
+git log –-author=”Author_name”
+eg:  git log --author="Anshul Kumar Neekhara"
+
+
+
+############### git shortlog
+Basically it displays the log output format in the following syntax:
+git shortlog
+git shortlog -s
+git shortlog -e
+
+Committer1(number of commits)
+Commit Message 1
+Commit Message  2
+Commit Message n
+Committer2(number of commits)
+Commit Message 1
+Commit Message  2
+Commit Message n
+
+
+############### git grep
+if you want to fetch where a particular string exists in a file or whether a particular string is associated with a particular commit id.
+
+you have to pass a particular string in the command when checking for the existence of a  string in a file
+git grep hello 
+
+when checking for a particular string in a commit id mention the string in double quotes. 
+git grep "hello world" <commid_id> 
+
+
+
+
+
 
