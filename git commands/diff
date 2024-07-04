@@ -17,7 +17,11 @@ the difference between the last commit and working directory / Viewing Changes B
    
 
   3. Comparing Working Directory and Last Commit ( both staged and unstaged changes )
-     git diff HEAD
+     git diff HEAD ( same as git status -vv )
+
++ -> staged 
+- -> not staged
+
 
 
 
@@ -26,6 +30,10 @@ git diff <commit_hash>
 
 Changes between two Commits
 git diff <commit_hash1> <commit_hash2>
+
+Changes between the current branch with specific branch
+git diff <name_of_branch>
+
 
 Comparing Two Branches
 git diff branch1 branch2 
@@ -36,9 +44,27 @@ git diff branch1 branch2
     - it will show all the changes being done in branch2 in green color and changes being done in branch1 in red color.
 eg. - git diff master origin/master
 
-Comparing a File
+
+Comparing a File between 2 branches
 git diff <branch> <branch> -- <file_path>
 eg. git diff main origin/main -- src/main.py
+
+
+
+
+
+Showing Differences for a Specific File or Directory
+To show all the changes between the previous commit of the specified file and the locally-modified version that has not yet been staged
+  git diff file_name 
+To show the difference between some version of a file in a given commit and the local HEAD version
+  git diff <commit_hash1> file_name 
+To show the difference between two given versions of a file
+  git diff <commit_hash1> <commit_hash2> file_name 
+To show the difference between the version specified by the hash  a1e7045 and the latest commit on the branch for the directory 
+  git diff commit-id branch_name directory_name/
+To show the changes between the previous commit and the current commit.
+git diff HEAD^ HEAD
+
 
 git diff
 git diff --staged
