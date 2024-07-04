@@ -10,11 +10,15 @@ git reset --hard
 git reset --hard <commit-hash>
 
 ############# fresh pull #############
-1. add the remote origin
+1. add the remote
    git remote add origin https://github.com/Anshul905/Important.git
 2. git pull <remote_name> <branch_name>
    git pull origin main
-
 OR
-
 git pull https://github.com/Anshul905/Important.git
+
+############# Compare Local and Remote branches #############
+git fetch
+git diff <local_branch> <remote>/<branch>
+   git diff main origin/main
+
