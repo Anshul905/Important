@@ -65,13 +65,14 @@ To show the changes between the previous commit and the current commit.
 git diff HEAD^ HEAD
 
 
+################# OPTIONS #################
 git diff
 git diff --staged
 git diff HEAD
 git diff master origin/master
 git diff origin/master master 
 git diff origin/master
-
+git diff master origin/master --name-status
 
 
 
