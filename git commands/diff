@@ -1,0 +1,33 @@
+shows the differences between various states of a repository.
+It helps developers see what changes have been made, whether they are between working directory and the staging area, between the staging area and the last commit, or between any two commits.
+
+difference after last commit and working directory / Viewing Changes Between Commits 
+  1. Comparing Working Directory and Staging Area ( index ) 
+     unstaged changes , tracked files that are not yet added to the staging area with git add , changes that have been made in your working directory but are not yet staged
+     git diff 
+  
+  Stage the Changes means git add commands
+
+  2. Comparing Staging area (index) and the last commit. 
+     staged changes , what you have staged using git add , staged but not yet committed
+     git diff --cached
+     OR
+     git diff --staged
+
+  3. Comparing Working Directory and Last Commit ( both staged and unstaged changes )
+     git diff HEAD
+
+
+
+Comparing a Commit and the Working Directory - ( difference after specific commit and working directory )
+git diff <commit_hash>
+
+Changes between two Commits
+git diff <commit_hash1> <commit_hash2>
+
+Comparing Two Branches
+git diff branch1 branch2
+eg. - git diff master origin/master
+
+Comparing a File
+git diff <branch> <branch> -- <file_path>
