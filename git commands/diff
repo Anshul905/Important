@@ -14,8 +14,7 @@ the difference between the last commit and working directory / Viewing Changes B
      git diff --cached
      OR
      git diff --staged
-   
-
+  
   3. Comparing Working Directory and Last Commit ( both staged and unstaged changes )
      git diff HEAD ( same as git status -vv )
 
@@ -34,7 +33,6 @@ git diff <commit_hash1> <commit_hash2>
 Changes between the current branch with specific branch
 git diff <name_of_branch>
 
-
 Comparing Two Branches
 git diff branch1 branch2 
    - shows the changes that would be needed to transform branch1 into branch2
@@ -50,18 +48,19 @@ git diff <branch> <branch> -- <file_path>
 eg. git diff main origin/main -- src/main.py
 
 
-
-
-
-Showing Differences for a Specific File or Directory
-To show all the changes between the previous commit of the specified file and the locally-modified version that has not yet been staged
+####### Showing Differences for a Specific File or Directory
+To show all the changes between the previous commit of the specified file and the locally modified version that has not yet been staged
   git diff file_name 
+
 To show the difference between some version of a file in a given commit and the local HEAD version
   git diff <commit_hash1> file_name 
+
 To show the difference between two given versions of a file
   git diff <commit_hash1> <commit_hash2> file_name 
+
 To show the difference between the version specified by the hash  a1e7045 and the latest commit on the branch for the directory 
   git diff commit-id branch_name directory_name/
+
 To show the changes between the previous commit and the current commit.
 git diff HEAD^ HEAD
 
@@ -72,3 +71,37 @@ git diff HEAD
 git diff master origin/master
 git diff origin/master master 
 git diff origin/master
+
+
+
+
+################# OPTIONS #################
+git diff --stat
+  Provides a summary of changed files instead of showing line-by-line differences.
+git diff --name-only
+  Shows only the names of files that have changed.
+git diff --name-status
+  Shows only the names and status (added, modified, deleted) of changed files
+  
+git diff --color 
+  Enables color highlighting for the output
+git diff --word-diff 
+  Shows changes at the word level instead of the default line-by-line differences
+git diff --color-words
+  Highlights changed words instead of whole lines, providing a more granular view of changes
+
+git diff --cached OR git diff --staged
+  Compares the files in the staging area (index) with the last commit
+
+git diff --ignore-space-change 
+   Ignores changes in the amount of whitespace, useful when formatting changes are irrelevant
+git diff ignore-all-space OR git diff -w
+  Ignores whitespace changes, focusing only on content changes
+  
+
+
+
+
+
+
+
