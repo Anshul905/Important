@@ -10,9 +10,11 @@ the difference between the last commit and working directory / Viewing Changes B
 
   2. Comparing the Staging area (index) and the last commit. 
      staged changes, what you have staged using git add, staged but not yet committed
+     equivalent to git status -s
      git diff --cached
      OR
      git diff --staged
+   
 
   3. Comparing Working Directory and Last Commit ( both staged and unstaged changes )
      git diff HEAD
@@ -26,8 +28,20 @@ Changes between two Commits
 git diff <commit_hash1> <commit_hash2>
 
 Comparing Two Branches
-git diff branch1 branch2 - shows the changes that would be needed to transform branch1 into branch2
+git diff branch1 branch2 
+   - shows the changes that would be needed to transform branch1 into branch2
+   - showing all the changes wrt branch2 
+      - if green means those changes are staged and committed in that branch 
+      - if red means those changes are not tracked by git in branch2
 eg. - git diff master origin/master
 
 Comparing a File
 git diff <branch> <branch> -- <file_path>
+eg. git diff main origin/main -- src/main.py
+
+git diff
+git diff --staged
+git diff HEAD
+git diff master origin/master
+git diff origin/master master 
+git diff origin/master
