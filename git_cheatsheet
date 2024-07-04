@@ -8,3 +8,13 @@ git commit --amend -m "New commit message."
 ############# discard all changes in your working directory and revert to the state of the last commit #############
 git reset --hard 
 git reset --hard <commit-hash>
+
+############# fresh pull #############
+1. add the remote origin
+   git remote add origin https://github.com/Anshul905/Important.git
+2. git pull <remote_name> <branch_name>
+   git pull origin main
+
+OR
+
+git pull https://github.com/Anshul905/Important.git
