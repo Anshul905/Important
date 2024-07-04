@@ -33,6 +33,7 @@ git diff branch1 branch2
    - showing all the changes wrt branch2 
       - if green means those changes are staged and committed in that branch 
       - if red means those changes are not tracked by git in branch2
+    - it will show all the changes being done in branch2 in green color and changes being done in branch1 in red color.
 eg. - git diff master origin/master
 
 Comparing a File
