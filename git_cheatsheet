@@ -22,3 +22,9 @@ git fetch
 git diff <local_branch> <remote>/<branch>
    git diff main origin/main
 
+
+############# interactive way to search your command history - Using Reverse Search (Ctrl + R) #############
+Press Ctrl + R to start reverse search.
+Start typing the command or part of the command you want to find.
+Git Bash will display the most recent match. Press Ctrl + R again to cycle through older matches.
+Press Enter to execute the displayed command or use the arrow keys to edit it before executing.
