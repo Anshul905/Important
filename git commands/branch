@@ -1,0 +1,71 @@
+############## create a new branch
+git branch <branch-name>
+
+git branch ( local )
+git branch -r ( remote ) 
+git branch -a ( all -> local + remote)
+
+############## Switch to branch
+1. Switch to existing branch 
+git checkout <branch-name>
+or 
+git switch feature-branch
+
+2 .Craete and switch to new branch 
+git checkout -b <branch-name>
+OR
+git switch -c <branch-name>
+
+############## Delete a branch
+Delete a local branch ( branch must be fully merged with its upstream branch or the current branch )
+git branch -d <branch-name>
+
+Force Delete a local branch ( even if it has unmerged changes )
+git branch -D <branch-name>
+
+
+############## Renaming Branches
+git branch -m <old-branch-name> <new-branch-name>
+if want to rename current branch 
+git branch -m <new-branch-name>
+
+
+
+############## Working with Remote Branches
+### Push a Local Branch to Remote
+git push <remote-name> <branch-name>
+eg. git push origin new-branch-name
+
+### Delete a Remote Branch
+git push <remote-name> --delete <branch-name>
+example - 
+eg. git push origin --delete feature-branch ( Delete a remote branch named 'feature-branch' )
+
+
+
+
+############################ Commands ############################
+git branch 
+git branch -r  
+git branch -a 
+
+git branch <branch-name>
+
+git checkout <branch-name>
+git switch <branch-name>
+
+git checkout -b <branch-name>
+git switch -c <branch-name>
+
+git branch -m <new-branch-name>
+git branch -m <old-branch-name> <new-branch-name>
+
+git branch -d <branch-name>
+git branch -D <branch-name>
+
+git push <remote-name> <branch-name>
+git push <remote-name> --delete <branch-name>
+
+
+
+
