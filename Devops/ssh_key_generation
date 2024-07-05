@@ -10,7 +10,7 @@ when you are using server - .ssh will be generated at the root folder
 Your identification has been saved in /data/home/svc_tas_int/.ssh/id_rsa.
 Your public key has been saved in /data/home/svc_tas_int/.ssh/id_rsa.pub.
 The key fingerprint is:
-SHA256:cTTXQOFcrVBtr206Xr3mJj3F832EkUGP6Ez47NqNJQY aneekhara@some.com
+SHA256:randomThing2 aneekhara@some.com
 eg - svc_tas_int@awsmblx500bs024
 	/data/home/svc_tas_int
 
@@ -21,7 +21,7 @@ to go to gome directory
 ( in server - /data/home/svc_tas_int , and public key at /data/home/svc_tas_int/.ssh/id_rsa.pub )
 
 >> cat .ssh/id_rsa.pub
-ssh-rsa randomlogkey aneekhara@some.com
+ssh-rsa randomThing aneekhara@some.com
 
 
 connect it to server ( paste the public key in the gerrit , profile -> setting -> ssh key ) 
