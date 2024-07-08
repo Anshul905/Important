@@ -1,0 +1,137 @@
+Merging is Git's way of putting a forked history back together again. 
+The git merge command lets you take the independent lines of development created by git branch and integrate them into a single branch.
+The current branch will be updated to reflect the merge, but the target branch ( feature ) will be completely unaffected.
+Git merge will combine multiple sequences of commits into one unified history. In the most frequent use cases, git merge is used to combine two branches. 
+
+How it works ?
+
+If Git encounters a piece of data that is changed in both histories it will be unable to automatically combine them. 
+This scenario is a version control conflict and Git will need user intervention to continue. 
+
+
+###################### Fast forward merge VS 3-way merge ######################
+###################### Fast forward merge
+1. Simpler, linear history.
+2. No new merge commit.
+3. Possible only when the current branch has no new commits since the target branch was created.
+How it works ?
+A fast-forward merge can occur when there is a linear path from the current branch tip to the target branch. Instead of “actually” merging the branches, 
+When performing a fast-forward merge, Git moves the pointer of the target branch (e.g., main) to point to the latest commit of the source branch (e.g., feature-branch). 
+This means there is no new commit created specifically for the merge.
+
+### Benefits & Drawbacks
+Benefits - 
+1. Simpler History  : The commit history is straightforward and easy to read.
+2. No Extra Commits : No additional merge commits clutter the history.
+Drawbacks:
+1. Lacks Explicit Merge Record: There's no dedicated commit that explicitly records the merging of branches, which can sometimes make it harder to track the integration of different feature branches.
+
+When you use --no-ff, Git will create a new merge commit even if the branch could be merged with a fast-forward merge
+Many developers like to use fast-forward merges (facilitated through rebasing) for small features or bug fixes,
+
+main:     A---B---C
+feature:  A---B---C---D---E
+
+After merging feature into main:
+main:     A---B---C---D---E
+
+demonstrates a fast-forward merge. 
+# Start a new feature
+git checkout -b new-feature main
+# Edit some files
+git add <file>
+git commit -m "Start a feature"
+# Edit some files
+git add <file>
+git commit -m "Finish a feature"
+# Merge in the new-feature branch
+git checkout main
+git merge new-feature
+git branch -d new-feature
+
+
+###################### 3 way merge 
+1. Non-linear history with a new merge commit.
+2. Can handle divergent histories.
+3. Useful for resolving conflicts and understanding the development process.
+
+fast-forward merge is not possible if the branches have diverged. When there is not a linear path to the target branch, Git has no choice but to combine them via a 3-way merge. 
+The nomenclature comes from the fact that Git uses three commits to generate the merge commit: the two branch tips and their common ancestor. 
+3-way merges use a dedicated commit to tie together the two histories. 
+Many developers like to use reserving 3-way merges for the integration of longer-running features ( bacause mainline will have possibility of some changes more )
+How it works ?
+  Git compares the changes between the common ancestor and each branch, and then combines them into a new merge commit.
+
+### When 3-Way Merge is Necessary
+Diverged Histories: When both the target and source branches have new commits since they diverged from their common ancestor.
+Conflict Resolution: When changes in the two branches are incompatible and need to be manually resolved.
+
+### Benefits and Drawbacks
+Benefits:
+Explicit Merge History : The merge commit provides a clear record of branch integration.
+Conflict Handling      : Git can detect and facilitate the resolution of conflicts between branches.
+Preserves Branching Structure: The non-linear history reflects the true nature of development and collaboration.
+Drawbacks:
+Complex History      : The commit history can become more complex and harder to follow.
+Extra Commits        : The merge process adds an additional commit, which some might see as clutter.
+
+  
+Before merge:
+main:     A---B---C---F
+feature:  A---B---C---D---E
+
+After merging feature into main:
+main:     A---B---C---F---M ( M - merge commit )
+                   \     /
+                    D---E
+
+Start a new feature
+git checkout -b new-feature main
+# Edit some files
+git add <file>
+git commit -m "Start a feature"
+# Edit some files
+git add <file>
+git commit -m "Finish a feature"
+# Develop the main branch
+git checkout main
+# Edit some files
+git add <file>
+git commit -m "Make some super-stable changes to main" #### development in main branch - cant perform fast forward merging 
+# Merge in the new-feature branch
+git merge new-feature
+git branch -d new-feature
+
+
+###################### Resolving conflict
+
+When such a situation occurs, it stops right before the merge commit so that you can resolve the conflicts manually.
+The great part of Git's merging process is that it uses the familiar edit/stage/commit workflow to resolve merge conflicts. 
+When you encounter a merge conflict, running the git status command shows you which files need to be resolved. 
+
+For example, if both branches modified the same section of hello.py, you would see something like the following:
+On branch main
+Unmerged paths:
+(use "git add/rm ..." as appropriate to mark resolution)
+both modified: hello.py
+
+
+###################### How conflicts are presented
+When Git encounters a conflict during a merge, 
+It will edit the content of the affected files with visual indicators that mark both sides of the conflicted content. 
+These visual markers are: <<<<<<<, =======, and >>>>>>>. 
+It's helpful to search a project for these indicators during a merge to find where conflicts need to be resolved.
+
+here is some content not affected by the conflict
+<<<<<<< main
+this is conflicted text from main
+=======
+this is conflicted text from feature branch
+>>>>>>> feature branch;
+
+content before the ======= marker is the receiving branch and the part after is the merging branch.
+
+Once you've identified conflicting sections, you can go in and fix up the merge to your liking. 
+When you're ready to finish the merge, all you have to do is run git add on the conflicted file(s) to tell Git they're resolved. 
+Then, you run a normal git commit to generate the merge commit. 
+It’s the exact same process as committing an ordinary snapshot, which means it’s easy for normal developers to manage their own merges.
