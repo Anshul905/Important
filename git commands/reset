@@ -1,0 +1,60 @@
+versatile tool for undoing changes
+It has three primary forms of invocation ( --soft, --mixed, --hard )
+
+
+At a surface level, git reset is similar in behavior to git checkout. 
+Where git checkout solely operates on the HEAD ref pointer, git reset will move the HEAD ref pointer and the current branch ref pointer
+
+initial 
+a -> b -> c -> d ( HEAD, main )
+git checkout b 
+a -> b ( HEAD ) -> c -> d ( main )
+
+git reset b 
+a -> b ( HEAD , main ) -> c -> d
+
+git reset will modify the state of the three trees. The ref pointer modification always happens and is an update to the third tree, the Commit tree.
+
+Main options
+default : --mixed and HEAD
+git reset === git reset --mixed HEAD 
+Instead of HEAD any Git SHA-1 commit hash can be used
+
+
+
+
+########################### 3 Tree Mechanisms ###########################
+Git's internal state management systems. Sometimes these mechanisms are called Git's "three trees". 
+Trees may be a misnomer, as they are not strictly traditional tree data-structures. They are, however, node and pointer-based data structures that Git uses to track a timeline of edits. 
+
+1. The working directory ( First tree )
+Modified/Untracked - These changes are currently a part of the first tree, "The Working Directory"
+
+2. Staging index ( Second tree )
+This tree is a complex internal caching mechanism. Git generally tries to hide the implementation details of the Staging Index from the user.
+To accurately view the state of the Staging Index we must utilize a lesser known Git command git ls-files
+git ls-files - essentially a debug utility for inspecting the state of the Staging Index tree.
+
+$ git ls-files  reset.txt
+filename.txt
+$ git ls-files -s reset.txt
+100644 e69de29bb2d1d6434b8b29ae775ad8c2e48c5391 0   filename
+
+without -s or --staged -->  output is simply a list of file names and paths that are currently part of the index.
+The -s option displays additional metadata for the files in the Staging Index. This metadata is the staged contents' mode bits, object name, and stage number.
+
+$ git add reset.txt
+$ git ls-files -s reset.txt
+100644 d7d77c1b04b5edd5acfc85de0b592449e5303770 0       reset.txt
+We can see that the object SHA for reset_lifecycle_file has been updated from e69de29bb2d1d6434b8b29ae775ad8c2e48c5391 to d7d77c1b04b5edd5acfc85de0b592449e5303770.
+d7d77c1b04b5edd5acfc85de0b592449e5303770 is the standard Git object SHA-1 hash. It is a hash of the content of the files.    
+The Commit History stores its own object SHA's for identifying pointers to commits and refs and , the Staging Index has its own object SHA's for tracking versions of files in the index.
+
+
+3. Commit history ( Third Tree )
+The git commit command adds changes to a permanent snapshot that lives in the Commit History.
+This snapshot also includes the state of the Staging Index at the time of commit.
+The changeset has been added to the Commit History. 
+
+
+
