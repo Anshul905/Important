@@ -1,4 +1,4 @@
-###################### Resolving conflict
+###################### Resolving conflict ######################
 
 When such a situation occurs, it stops right before the merge commit so that you can resolve the conflicts manually.
 The great part of Git's merging process is that it uses the familiar edit/stage/commit workflow to resolve merge conflicts. 
@@ -11,7 +11,7 @@ Unmerged paths:
 both modified: hello.py
 
 
-###################### How conflicts are presented
+###################### How conflicts are presented ######################
 When Git encounters a conflict during a merge, 
 It will edit the content of the affected files with visual indicators that mark both sides of the conflicted content. 
 These visual markers are: <<<<<<<, =======, and >>>>>>>. 
@@ -33,7 +33,7 @@ It’s the exact same process as committing an ordinary snapshot, which means it
 
 
 
-###################### Types of merge conflicts
+###################### Types of merge conflicts ######################
 A merge can enter a conflicted state at two separate points
 
 1. Git fails to start the merge 
@@ -50,6 +50,36 @@ Git will do its best to merge the files but will leave things for you to resolve
 
 A mid-merge failure will output the following error message:
 error: Entry '<fileName>' would be overwritten by merge. Cannot merge. (Changes in staging area)
+
+
+###################### How to identify merge conflicts
+git status indicates that there are unmerged paths due to a conflict. 
+
+$ git status
+On branch main
+You have unmerged paths.
+(fix conflicts and run "git commit")
+(use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+(use "git add <file>..." to mark resolution)
+
+both modified:   merge.txt
+
+
+
+###################### Git commands that can help resolve merge conflicts ######################
+git status
+git log --merge   ( list of commits that conflict between the merging branches )
+git diff
+
+### Tools for when git fails to start a merge
+git checkout      ( used for undoing changes to files, or for changing branches )
+git reset --mixed ( to undo changes to the working directory and staging area )
+
+### Tools for when git conflicts arise during a merge
+git merge --abort ( exit from the merge process and return the branch to the state before the merge began )
+git reset         ( used during a merge conflict to reset conflicted files to a know good state )
 
 
 
