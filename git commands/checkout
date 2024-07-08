@@ -39,6 +39,10 @@ git checkout main
 git merge new-branch-name
 
 
+Undoing a committed snapshot
+1 way - use git checkout to checkout the previous commit and create a new branch for changes , switch to that branch 
+At this point, we can continue work on this new branch in which the <some-commit> no longer exists and consider it 'undone'. 
+Unfortunately, if you need the previous branch, maybe it was your main branch, this undo strategy is not appropriate
 
   
 ###################### with file ######################
@@ -77,9 +81,7 @@ Older versions of Git require the creation of a new branch based on the remote.
 
 
 
-Undoing a committed snapshot
-1 way - use git checkout to checkout the orevious commit and create bew branch for there  switch to that branch 
-At this point, we can continue work on this new branch in which the 872fa7e commit no longer exists and consider it 'undone'. Unfortunately, if you need the previous branch, maybe it was your main branch, this undo strategy is not appropriate
+
 
 
 
