@@ -1,0 +1,89 @@
+operates upon three distinct entities: files, commits, and branches
+
+###################### with commits 
+git checkout <commit-id>
+
+The command checks out a specific commit from the repository's history.
+This puts the repository into a "detached HEAD" state, meaning you are not on any branch but on a specific commit.
+In this state, any changes you make and commit will not belong to any branch unless you explicitly create a new branch from this commit. 
+( but commit will be appended to checkout commit and then can use git merge <checkout commit-id> to merge these changes into any branch , make sure to be on correct branch eg. main , master, feature) 
+
+Git checkout is an easy way to “load” any of these saved snapshots onto your development machine. 
+### detached HEAD state
+1. When you check out a specific commit, Git's HEAD pointer is detached from any branch and points directly to the specified commit.
+2. During the normal course of development, the HEAD usually points to main or some other local branch, but when you check out a previous commit, 
+   HEAD no longer points to a branch, it points directly to a commit.
+
+##### Viewing an old revision
+1. find the <commit-id> of the revision you want to see ( git log --oneline )
+2. You can use git checkout to view the commit as follows ( git checkout <commit-id> )
+3. This makes your working directory match the exact state of the <commit-id> commit. 
+   You can look at files, compile the project, run tests, and even edit files without worrying about losing the current state of the project. 
+   Nothing you do in here will be saved in your repository. 
+4. To continue developing, you need to get back to the “current” state of your project ( git checkout main ) ( assuming main is the default branch )
+
+NOT GOOD PRACTICE
+It is possible to make changes and commit them while in a detached HEAD state without creating a new branch.
+When you check out a specific commit (not a branch), you enter a "detached HEAD" state. In this state, you can still make changes and commit them, 
+but those commits will not be associated with any branch. Instead, they will be associated directly with the HEAD, which is pointing to a specific commit rather than a branch.
+
+GOOD PRACTICE IS TO CREATE NEW BRANCH 
+If you want to make changes, you will have to create new branch ( its a good practice )
+To save your work from a detached HEAD state, create a new branch using git checkout -b <new-branch-name>.
+suppose you have made changes and commits while in a detached HEAD state (after checking out a specific commit), and you want to incorporate those changes into your main branch (or any other branch). 
+In that case,you must merge the newly created branch into the target branch (e.g., main). 
+flow - 
+git checkout -b new-branch-name
+  make changes & commit ... 
+git checkout main
+git merge new-branch-name
+
+
+
+  
+###################### with file ######################
+Checking out an old file does not move the HEAD pointer. It remains on the same branch and same commit, avoiding a 'detached head' state. 
+You can then commit the old version of the file in a new snapshot as you would any other changes
+this usage of git checkout on a file, serves as a way to revert back to an old version of an individual file
+
+
+
+###################### with branch ######################
+*When it points to a branch, Git doesn't complain,  it doesn't switches into a “detached HEAD” state.
+Checking out a branch updates the files in the working directory to match the version stored in that branch, and it tells Git to record all new commits on that branch.
+It makes it ridiculously easy to try new experiments without the fear of destroying existing functionality
+
+Git tracks a history of checkout operations in the reflog. You can execute git reflog to view the history.
+
+git checkout ＜existing-branch＞ ( switch the branch ) 
+git checkout -b ＜new-branch＞ ( base the new-branch off the current HEAD ) 
+git checkout -b ＜new-branch＞ ＜existing-branch＞ ( bases new-branch off of existing-branch instead of the current HEAD )
+
+###### Git checkout a remote branch
+In order to checkout a remote branch you have to first fetch the contents of the branch.
+*git fetch --all
+*In modern versions of Git, you can then checkout the remote branch like a local branch.
+  git checkout ＜remotebranch＞
+Older versions of Git require the creation of a new branch based on the remote.
+  git checkout -b ＜remotebranch＞ origin/＜remotebranch＞
+  OR
+  Additionally you can checkout a new local branch and reset it to the remote branches last commit.
+  git checkout -b ＜branchname＞
+  git reset --hard origin/＜branchname＞
+
+
+
+
+
+
+
+Undoing a committed snapshot
+1 way - use git checkout to checkout the orevious commit and create bew branch for there  switch to that branch 
+At this point, we can continue work on this new branch in which the 872fa7e commit no longer exists and consider it 'undone'. Unfortunately, if you need the previous branch, maybe it was your main branch, this undo strategy is not appropriate
+
+
+
+
+
+
+
