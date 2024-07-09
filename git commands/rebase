@@ -87,3 +87,38 @@ Once you've specified commands for each commit in the rebase, Git will begin pla
 # x, exec = run command (the rest of the line) using shell
 # d, drop = remove commit
 
+
+
+
+########## rebase conflict in standard rebase ##########
+This is easily remedied by rebasing your branch frequently against main.
+The --continue and --abort command line arguments can be passed to git rebase to advance or reset the the rebase when dealing with conflicts.
+
+if conflict --> resolve , stage the chnages, --continue
+ 
+1. Start the Rebase
+git checkout feature-branch
+git rebase main
+
+2. Encounter a Conflict
+Git will stop the rebase process at the conflicting commit ( if multiple conflicts , will stop multiple ties ) and mark the conflicting files.
+You will see a message indicating which files have conflicts.
+
+3. Resolve the Conflicts
+Open each conflicting file and manually resolve the conflicts. Look for conflict markers (<<<<<<<, =======, >>>>>>>).
+After resolving the conflicts, stage the resolved files
+git add <resolved-file>
+
+4. Continue the Rebase
+After resolving all conflicts and staging the changes, continue the rebase process.
+git rebase --continue
+
+5. Repeat if Necessary
+If there are multiple commits that cause conflicts, Git will continue the rebase and may stop again at the next conflict.
+Repeat the process of resolving conflicts and continuing the rebase until all conflicts are resolved and the rebase is complete.
+
+6. Abort the Rebase (if needed):
+If you decide that the rebase is too complex or problematic, you can abort the rebase process. This will return your branch to the state it was in before the rebase started.
+git rebase --abort
+
+
