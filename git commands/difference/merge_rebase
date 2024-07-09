@@ -1,0 +1,17 @@
+..... M ->       M1 ->    -> M2 ->     -> M3   
+            F ->    -> F1 ->    -> F2   
+
+*you are on feature branch 
+git merge master 
+git log
+..... M ->       M1 -> F1 -> M2 ->  F2 -> M3 -> MC 
+                                          mh    fh
+
+git rebase master ( rewrites features history on top of master head ) 
+git log
+..... M ->       M1 -> M2 -> M3 ->  F1 -> F2    
+                             mh           fh
+MC - new merge commit , mh - master head , fh - feature head
+
+merge  - maintains branch history but creates new commit which can be cluttered with merge commits and also It does not maintain all the history of particular branch together
+rebase - linear commit history ( particular branch history together ) but it rewrites the commit history 
