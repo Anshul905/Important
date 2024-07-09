@@ -1,0 +1,11 @@
+reset vs revert 
+
+Feature	                            git reset	                                    git revert
+Commit History	                    Alters commit history	                        Preserves commit history
+Usage Context	                      Local changes, history rewriting	            Public/shared repositories, safe undo
+Modes	                              --soft, --mixed, --hard	                      No modes
+Data Loss                           Potential	High (especially with --hard)	      Low
+Creates New Commit	                No	                                          Yes
+Undo Specific Commits	              Moves branch pointer	                        Creates new commit that undoes a specific commit
+changeset                           completely removes a changeset                maintains the original changeset and uses a new commit to apply the undo.
+
