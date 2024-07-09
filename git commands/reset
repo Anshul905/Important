@@ -48,7 +48,10 @@ git reset --hard  <branch-name>            ==> reset to a Specific Branch ( HEAD
 
 
 ######## --mixed ( default )
-reset the current branch to a specific state while preserving changes in the working directory
+1. reset the commit tree to specified commit 
+2. no change in working directory , only un-stages the staged changes after that specified commit to current state 
+
+the current branch to a specific state while preserving changes in the working directory
 Keeps Working Directory Changes:
   git reset --mixed will keep all changes in your working directory. 
   It only affects the staging area, un-staging the files that were previously added using git add.
