@@ -51,6 +51,17 @@ You can then commit the old version of the file in a new snapshot as you would a
 this usage of git checkout on a file, serves as a way to revert back to an old version of an individual file
 
 
+########## Commands ########## 
+git checkout -- <file-path>                 ==> Restores the specified file to its latest commit (HEAD) of current branch 
+blow away all the changes since last commit
+Discard changes in the Working Directory for a File
+
+git checkout <branch-name>                 ==> Check out All Files from Another Branch ( latest commit HEAD of that branch )
+git checkout <branch-name> -- <file-path>  ==> Restores the specified file from Another Branch ( latest commit HEAD of that branch )
+
+git checkout <commit-id>                   ==> Check out All Files from a particular commit
+git checkout <commit-id> -- <file-path>    ==> Restores the specified file from a particular commit
+
 
 ###################### with branch ######################
 *When it points to a branch, Git doesn't complain,  it doesn't switches into a “detached HEAD” state.
