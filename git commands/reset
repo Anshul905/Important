@@ -4,6 +4,17 @@ used to reset your current branch to a specific state
 used to undo changes and revert the repository to a known state.
 ref pointers are updated to the specified commit.
 
+Git reset will never delete a commit, however, commits can become 'orphaned' which means there is no direct path from a ref to access them. 
+These orphaned commits can usually be found and restored using git reflog
+Git will permanently delete any orphaned commits after it runs the internal garbage collector. By default, Git is configured to run the garbage collector every 30 days.
+
+Don't reset public history 
+- You should never use git reset  when any snapshots after have been pushed to a public repository. After publishing a commit, you have to assume that other developers are reliant upon it.
+- The point is, make sure that you’re using git reset ＜commit＞ on a local experiment that went wrong—not on published changes.  
+  If you need to fix a public commit, the git revert command was designed specifically for this purpose.
+
+
+
 At a surface level, git reset is similar in behavior to git checkout. 
 Where git checkout solely operates on the HEAD ref pointer, git reset will move the HEAD ref pointer and the current branch ref pointer both , 
 that's why we can check out to the main ( HEAD ) but can not go to main ( HEAD ) using reset 
@@ -17,23 +28,34 @@ a -> b ( HEAD ) -> c -> d ( main )
 git reset b 
 a -> b ( HEAD , main ) -> c -> d
 
+moves the branch pointer ( main ) to the specified commit 
 git reset will modify the state of the three trees. The ref pointer modification always happens and is an update to the third tree, the Commit tree.
 
 
 
-
 #################### commands #################### 
-git reset 
+git reset <file>
 git reset <commit>
 git rest <branch>
 
 git reset HEAD~1 OR git reset HEAD^ ( reset to previous commit )
+git reset --hard HEAD~2 ( completely removing the last two snapshots )
 
-git reset HEAD <file-path> 
+git reset <file-path> 
 git reset <commit-id> <file-path> 
-git reset HEAD <file1> <file2> <file3> 
+git reset <file1> <file2> <file3> 
 git reset HEAD . 
+git reset 
 
+--soft , --hard options can be used with all commands  [ except while resetting files command ]
+
+
+# Move HEAD and current branch pointer back to the previous commit
+git reset --soft HEAD~1
+# Move HEAD and current branch pointer back to the previous commit and unstage changes
+git reset HEAD~1
+# Move HEAD and current branch pointer back to the previous commit and discard all changes
+git reset --hard HEAD~1
 
 
 
@@ -41,22 +63,24 @@ git reset HEAD .
 git reset command with the --soft or --hard options does not work with specific files. 
 The --soft and --hard options apply to the entire repository and cannot be used to reset individual files.
 
-
-####### Unstage a File/s 
-git reset HEAD <file-path> 
-git reset HEAD <file1> <file2> <file> 
-
-Unstage a Specific File to specified commit
-  git reset <commit-id> <file-path> 
-
 Unstage All Staged Files
+  git reset 
   git reset HEAD . 
 
+Unstage a File/s 
+  git reset  <file-path> 
+  git reset  <file1> <file2> <file> 
+
+Unstage a File/s to specified commit
+  git reset <commit-id> <file-path>   
+  git reset <commit-id> <file1> <file2> <file> 
 
 If you want to discard changes - use checkout command 
 ### Discards changes in the working directory for the specified file.
 git checkout HEAD -- <file>
 git checkout <commit> -- <file>
+
+
 
 
 ########################### Main options ###########################
