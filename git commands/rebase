@@ -1,0 +1,89 @@
+Rebase has 2 main modes: "manual" and "interactive" mode.
+
+############## What is Rebase ##############
+process of moving or combining a sequence of commits to a new base commit, effectively reapplying commits on top of another base tip.
+
+From a content perspective, rebasing is changing the base of your branch from one commit to another making it appear as if you'd created your branch from a different commit
+
+It rewrites the history.
+Never rebase commits that you have shared/public pushed to github as it is destructive operation.
+  The rebase would replace the old commits with new ones and it would look like that part of your project history abruptly vanished.
+Never rebase when you are on the main/master branch
+unless you really know what are you doing , never rebase any commits that is already pushed 
+
+Rebasing is a common way to integrate upstream changes into your local repository.
+
+
+normally strategy is to polish feature branch by rebasing it to main ( to get latest changes ) before merging it to main and then merge it to main
+############## example ##############
+latest main in feature branch 
+
+..... M ->       M1 ->    -> M2 ->     -> M3   
+            F ->    -> F1 ->    -> F2   
+
+*you are on feature branch 
+git rebase master ( rewrites features history on top of master head ) 
+git log
+..... M ->       M1 -> M2 -> M3 ->  F1 -> F2    
+                             mh           fh
+
+mh - master head , fh - feature head
+
+rebasing is like saying, “I want to base my changes on what everybody has already done.”
+ 
+rebase - linear commit history ( particular branch history together ) but it rewrites the commit history 
+
+no merge commits is created 
+feature branch have latest main and all the other commits on main's top 
+git temporarily puts F1 and F2 aside and rewrites it onto main ( reapply it one by one )
+
+
+############## Why use `git rebase` ??? ##############
+Clean History        : Creates a linear, clean commit history without merge commits.
+Conflict Resolution  : Resolves conflicts interactively during the rebase process.
+Update Feature Branch: Keeps a feature branch updated with the latest changes from the main branch.
+
+############## Pros and Cons ##############
+Pros of rebase - 
+  1. linear commit history
+Cons of rebase - 
+  1. It rewrites the history.
+
+
+
+
+reapplying each commit one by one means each commit could potentially cause new conflict 
+
+
+
+git rebase <base>
+This automatically rebases the current branch onto ＜base＞, which can be any kind of commit reference (for example an ID, a branch name, a tag, or a relative reference to HEAD).
+in standard mode will automatically take the commits in your current working branch and apply them to the head of the passed branch.
+
+########## git rebase interactive ##########
+--i is for "interactive" rebasing
+Instead of blindly moving all of the commits to the new base, interactive rebasing gives you the opportunity to alter individual commits in the process,
+This lets you clean up history by removing, splitting, and altering an existing series of commits.
+
+git rebase --i <base>
+This rebases the current branch onto ＜base＞ but uses an interactive rebasing session. 
+This opens an editor where you can enter commands (described below) for each commit to be rebased. 
+These commands determine how individual commits will be transferred to the new base. 
+You can also reorder the commit listing to change the order of the commits themselves.
+This can be useful for:
+  Squashing multiple commits into a single commit
+  Amending a commit message
+  Fixing typos or errors in a commit
+  Reordering commits
+  Deleting unwanted commits
+Once you've specified commands for each commit in the rebase, Git will begin playing back commits applying the rebase commands.
+
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit the commit message
+# e, edit = use commit, but stop for amending
+# s, squash = use commit, but meld into previous commit
+# f, fixup = like "squash", but discard this commit's log message
+# x, exec = run command (the rest of the line) using shell
+# d, drop = remove commit
+
