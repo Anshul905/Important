@@ -60,10 +60,17 @@ git rebase <base>
 This automatically rebases the current branch onto ＜base＞, which can be any kind of commit reference (for example an ID, a branch name, a tag, or a relative reference to HEAD).
 in standard mode will automatically take the commits in your current working branch and apply them to the head of the passed branch.
 
+
+
+
+
 ########## git rebase interactive ##########
 --i is for "interactive" rebasing
+iterative rebase - process of rebasing a series of commits onto a new base, resolving conflicts, and continuing the process until all commits have been successfully applied. 
+
 Instead of blindly moving all of the commits to the new base, interactive rebasing gives you the opportunity to alter individual commits in the process,
 This lets you clean up history by removing, splitting, and altering an existing series of commits.
+
 
 git rebase --i <base>
 This rebases the current branch onto ＜base＞ but uses an interactive rebasing session. 
@@ -89,8 +96,7 @@ Once you've specified commands for each commit in the rebase, Git will begin pla
 
 
 
-
-########## rebase conflict in standard rebase ##########
+########## Handling rebase conflict ##########
 This is easily remedied by rebasing your branch frequently against main.
 The --continue and --abort command line arguments can be passed to git rebase to advance or reset the the rebase when dealing with conflicts.
 
@@ -114,11 +120,19 @@ After resolving all conflicts and staging the changes, continue the rebase proce
 git rebase --continue
 
 5. Repeat if Necessary
-If there are multiple commits that cause conflicts, Git will continue the rebase and may stop again at the next conflict.
+If there are multiple commits that cause conflicts ( repeat steps 2 to 4 ), Git will continue the rebase and may stop again at the next conflict.
 Repeat the process of resolving conflicts and continuing the rebase until all conflicts are resolved and the rebase is complete.
 
 6. Abort the Rebase (if needed):
 If you decide that the rebase is too complex or problematic, you can abort the rebase process. This will return your branch to the state it was in before the rebase started.
 git rebase --abort
+
+
+#### Handling Complex Rebase Scenarios
+Skipping a Commit: If a specific commit is causing too much trouble, you can skip it.
+  git rebase --skip
+Viewing the Current Patch: To see the changes being applied from the current commit during a rebase:
+  git diff
+
 
 
