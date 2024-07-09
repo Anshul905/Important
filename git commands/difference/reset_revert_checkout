@@ -9,3 +9,15 @@ Creates New Commit	                No	                                          
 Undo Specific Commits	              Moves branch pointer	                        Creates new commit that undoes a specific commit
 changeset                           completely removes a changeset                maintains the original changeset and uses a new commit to apply the undo.
 
+
+reset vs revert vs checkout
+
+Feature	                            git reset	                                         git revert	                                        git checkout
+Primary Use	                        Undoing commits, unstaging, discarding changes     Safely undoing changes with new commit	            Switching branches, restoring files
+Commit History	                    Alters commit history	                             Preserves commit history	Does not alter            commit history
+Modes	                              --soft, --mixed, --hard	                           No modes	                                          No modes
+Data Loss                           Potential	High (especially with --hard)	           Low	                            	                Low (but can lead to detached HEAD state)
+Creates New Commit		              No		                                             Yes	                            	             	  No
+Undo Specific Commits		            Moves branch pointer		                           Creates new commit that undoes a specific commit	  Can restore files to a specific commit state
+When to Use                         undo local changes,                                undo changes in a public/shared repository         Restore files to a specific commit
+                                    Suitable for local or private repositories                                                            Switch branches or check out specific commits
