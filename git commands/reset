@@ -16,9 +16,71 @@ a -> b ( HEAD , main ) -> c -> d
 git reset will modify the state of the three trees. The ref pointer modification always happens and is an update to the third tree, the Commit tree.
 
 Main options
-default : --mixed and HEAD
-git reset === git reset --mixed HEAD 
-Instead of HEAD any Git SHA-1 commit hash can be used
+
+ 
+--soft   ==>                                              commit history   ==> 
+--mixed  ==>                            staged snapshot , commit history   ==> all the changes in staging area will be moved to working directory
+--hard   ==> all ( working directory , staged snapshot ,  commit history ) ==> all the changes in working directory and staging area will be discarded 
+
+
+With all git reset invocations, the first action reset takes is to reset the commit tree. ( if it is HEAD , no changes will be shown )
+
+default
+git reset
+git reset --mixed HEAD  
+Instead of HEAD any Git SHA-1 <commit-id> hash can be used
+
+
+######## --hard 
+used to reset your current branch to a specific state
+used to undo changes and revert the repository to a known state.
+*discarding all changes in the working directory and the staging area. ( irreversibly ) , This means any pending work that was hanging out in the Staging Index and Working Directory will be lost.
+ref pointers are updated to the specified commit. Then, the Staging Index and Working Directory are reset to match that of the specified commit.
+
+Important Considerations
+Data Loss: Using git reset --hard will discard all uncommitted changes in your working directory and staging area. These changes cannot be easily recovered.
+Caution: Be very careful when using this command, especially if you have important uncommitted work. It is often a good idea to stash your changes first if you might want to keep them: git stash
+
+git reset --hard HEAD ( HEAD is default )
+git reset --hard                           ==> reset to most recent commit 
+git reset --hard  <commit-id>              ==> reset to a Specific Commit 
+git reset --hard  <branch-name>            ==> reset to a Specific Branch ( HEAD of that branch )
+
+
+######## --mixed ( default )
+reset the current branch to a specific state while preserving changes in the working directory
+Keeps Working Directory Changes:
+  git reset --mixed will keep all changes in your working directory. 
+  It only affects the staging area, un-staging the files that were previously added using git add.
+  Any changes that have been undone from the Staging Index are moved to the Working Directory
+The ref pointers are updated. The Staging Index is reset to the state of the specified commit. 
+
+
+git reset --mixed HEAD ( --mixed and HEAD is the default )
+git reset                                   ==> reset to most recent commit 
+git reset --mixed  <commit-id>              ==> reset to a Specific Commit 
+git reset --mixed  <branch-name>            ==> reset to a Specific Branch ( HEAD of that branch )
+
+
+######## --soft
+A soft reset will only reset the Commit History.
+the ref pointers are updated and the reset stops there. The Staging Index and the Working Directory are left untouched
+used to reset the current branch to a specific commit while keeping changes in both the staging area and the working directory. 
+This is useful when you want to move the HEAD pointer to a different commit but keep all your changes staged and ready to commit.
+you can effectively adjust the commit history while preserving your changes in the staging area and working directory, making it easy to amend commits or re-organize your commit history.
+this can be use to amend the commit ( rename the commit  ) , ( go to previous commit and do whatever you want to change )
+
+Important Considerations
+Keeps Staged Changes: 
+  git reset --soft keeps all changes in both the staging area and the working directory. It only moves the HEAD pointer to the specified commit.
+Preparation for Amending Commits: 
+  This command is useful when you want to uncommit the latest commit but keep all changes staged for a new commit.
+
+git reset --soft HEAD ( HEAD is the default )
+git reset --soft                           ==> reset to most recent commit 
+git reset --soft  <commit-id>              ==> reset to a Specific Commit 
+git reset --soft  <branch-name>            ==> reset to a Specific Branch ( HEAD of that branch )
+
 
 
 
