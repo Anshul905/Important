@@ -1,0 +1,55 @@
+captures a snapshot of the project's currently staged changes. 
+Committed snapshots can be thought of as “safe” versions of a project—Git will never change them unless you explicitly ask it to.
+
+At a high-level, Git can be thought of as a timeline management utility. 
+Commits are the core building block units of a Git project timeline.  
+Commits can be thought of as snapshots or milestones along the timeline of a Git project.
+Commits are created with the git commit command to capture the state of a project at that point in time. 
+
+Git Snapshots are always committed to the local repository. 
+Git’s version control model is based on snapshots 
+Git  records the entire contents of each file in every commit.
+
+git commit 
+  Commits only the changes that have been explicitly staged using git add.
+  Commits only staged changes.
+git commit -a OR -all 
+  Commits only the changes that have been staged using git add or if the file Is tracked.
+  Stages and commits all modified and deleted files (but not new files).
+  
+common thing in both command- 
+  will launch a text editor prompting you for a commit message. 
+  untracked files still need to be added manually then only we can stage them 
+
+git commit -m "commit message"
+  Passing the -m option will forgo the text editor prompt in-favor of an inline message.  
+
+git commit -am "commit message"
+simply a combination of git commit -a and git commit -m "commit message"
+This combination immediately creates a commit of all the staged changes ( using add or tracked files )and takes an inline commit message.
+
+
+git commit --amend
+Passing this option will modify the last commit. 
+Instead of creating a new commit, staged changes will be added to the previous commit. 
+This command will open up the system's configured text editor and prompt to change the previously specified commit message.
+
+git commit --amend -m "new commit message"
+  to edit the commit the message 
+
+git commit --amend -am "new commit message"
+  simply a combination of git commit -a and git commit --amend -m "new commit message"  
+  to edit the commit the message and add the staged file ( either using git add or tracked files )
+
+################ commands ################
+git commit 
+git commit -a 
+git commit -m "commit message"
+git commit -am "commit message"
+  
+git commit --amend
+git commit --amend -m "new commit message"
+git commit --amend -am "new commit message"
+
+
+  
