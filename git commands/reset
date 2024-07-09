@@ -4,8 +4,6 @@ used to reset your current branch to a specific state
 used to undo changes and revert the repository to a known state.
 ref pointers are updated to the specified commit.
 
-
-
 At a surface level, git reset is similar in behavior to git checkout. 
 Where git checkout solely operates on the HEAD ref pointer, git reset will move the HEAD ref pointer and the current branch ref pointer both , 
 that's why we can check out to the main ( HEAD ) but can not go to main ( HEAD ) using reset 
@@ -21,6 +19,44 @@ a -> b ( HEAD , main ) -> c -> d
 
 git reset will modify the state of the three trees. The ref pointer modification always happens and is an update to the third tree, the Commit tree.
 
+
+
+
+#################### commands #################### 
+git reset 
+git reset <commit>
+git rest <branch>
+
+git reset HEAD~1 OR git reset HEAD^ ( reset to previous commit )
+
+git reset HEAD <file-path> 
+git reset <commit-id> <file-path> 
+git reset HEAD <file1> <file2> <file3> 
+git reset HEAD . 
+
+
+
+
+################# with files #######################
+git reset command with the --soft or --hard options does not work with specific files. 
+The --soft and --hard options apply to the entire repository and cannot be used to reset individual files.
+
+
+####### Unstage a File/s 
+git reset HEAD <file-path> 
+git reset HEAD <file1> <file2> <file> 
+
+Unstage a Specific File to specified commit
+  git reset <commit-id> <file-path> 
+
+Unstage All Staged Files
+  git reset HEAD . 
+
+
+If you want to discard changes - use checkout command 
+### Discards changes in the working directory for the specified file.
+git checkout HEAD -- <file>
+git checkout <commit> -- <file>
 
 
 ########################### Main options ###########################
