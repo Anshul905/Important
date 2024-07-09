@@ -1,0 +1,20 @@
+########## who ##########
+to get information about currently logged in user on to system
+If you don't provide any option or arguments, the command displays the following information for each logged-in user.
+  Login name of the user
+  User terminal
+  Date & Time of login
+  Remote host name of the user
+
+$ who
+sudheer :0 2019-08-04 01:21 (:0)
+
+########## whoami ##########
+whoami: It display the system’s username
+$ whoami
+HP OR anshul
+
+########## id ##########
+id: It display the user identification(the real and effective user and group IDs) information
+$ id
+uid=197609(HP) gid=197121 groups=197121
