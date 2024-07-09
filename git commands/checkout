@@ -50,6 +50,10 @@ Checking out an old file does not move the HEAD pointer. It remains on the same 
 You can then commit the old version of the file in a new snapshot as you would any other changes
 this usage of git checkout on a file, serves as a way to revert back to an old version of an individual file
 
+git checkout -- <file-path>                 ==> Restores the specified file to its latest commit (HEAD) of current branch 
+git checkout <commit-id> -- <file-path>    ==> Restores the specified file from a particular commit
+git checkout <branch-name> -- <file-path>  ==> Restores the specified file from Another Branch ( latest commit HEAD of that branch )
+
 
 ########## Commands ########## 
 git checkout -- <file-path>                 ==> Restores the specified file to its latest commit (HEAD) of current branch 
