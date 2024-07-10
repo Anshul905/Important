@@ -1,0 +1,5 @@
+Introduced in Pipeline 2.5, it offers a simpler and more readable approach.
+Uses a block structure with keywords like pipeline, agent, stage, and steps.
+No semicolons needed, each statement on a new line.
+Aims for clarity and ease of maintenance.
+
