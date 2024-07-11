@@ -1,0 +1,300 @@
+#################################################################################################################################### 
+################################# mkdir ################################# 
+mkdir [options] directory_name
+
+mkdir my_directory
+mkdir dir1 dir2 dir3
+
+###### options 
+# -p or --parent option allows you to create parent directories as needed. If the parent directories do not exist, they will be created as well
+mkdir parent/child/grandchild ( wrong )
+mkdir -p parent/child/grandchild ( correct )
+
+# -v or --verbose option will display a message for each directory created
+mkdir -v my_directory
+
+# -m or --mode option allows you to set the file permissions for the newly created directories. This can be done using symbolic or numeric modes 
+mkdir -m 755 my_directory
+755 - (rwx r-x r-x)
+
+######### Handling Errors
+File Exists --> If you try to create a directory that already exists, mkdir will return an error
+sol --> use -p option, as it does not raise an error if the directory already exists.
+
+Permission Denied --> If you do not have the necessary permissions to create a directory in the specified location, you might see a "Permission denied" error
+Sol --> use sudo to create directories with elevated permissions if necessary
+    sudo mkdir /protected_directory
+
+  
+
+
+#################################################################################################################################### 
+################################# touch ################################# 
+used to create new, empty files or to update the timestamps of existing files
+touch [OPTION]... FILE...
+
+# to creates file/s
+touch filename 
+if file does not exist --> creates new empty file
+if exist --> touch update its access and modification timestamps to the current time
+
+touch filename1 filename2 filename3 ....  
+
+##### options 
+# -a --> Change only the access time.
+touch -a filename
+
+# -m --> Change only the modification time.
+touch -m filename
+
+# -c or --no-create --> Do not create any files; only update existing ones.
+touch -c filename ( if exists --> updates both access and modification)
+
+# -d --> Update the timestamp using a specific date/time string.
+touch -d "2023-07-10 12:34:56" filename
+
+# -t --> Update the timestamp using a specific time (in the format [[CC]YY]MMDDhhmm[.ss]).
+touch -t 202307101234.56 filename
+
+# -r or --reference --> Use the timestamp from another file.
+touch -r reference_file filename
+
+### use below commands to see the time 
+ls -lu --time-style=full-iso example.txt ( to check the access time )
+ls -l --time-style=full-iso example.txt ( to check the modification time )
+
+
+#################################################################################################################################### 
+################################# ls ################################# 
+used to list the contents of directories. 
+It provides various options to display the contents in different formats and with different levels of detail
+ls [options] [file...]
+
+ls
+ls -1
+ls ~ ( home directory )
+ls / ( root directory )
+ls path 
+  ls / ( root directory )
+  ls fol1/fol2
+
+Others - 
+ls -lX ( sort by extensions )
+ls *.txt
+ls -d */ ( List directories themselves, not their contents )
+ls -ld /dir1
+ls -d /usr/*
+
+
+
+-l Long listing format
+-1 One file per line
+-a Show all (including hidden)
+
+-R Recursively list subdirectories
+-t Sort by last modified time ( newest first )
+-r Reverse order
+-S Sort by file size ( largest first )
+
+-d List directories themselves, not their contents
+-X sort by extensions
+-m Comma-­sep­arated output
+-Q Quoted output
+
+
+
+#################################################################################################################################### 
+################################# cd ################################# 
+used to change the current working directory
+cd [directory]
+
+
+cd or cd ~  ( to home directory )
+cd / ( root directory )
+cd - ( switch back to previous directory )
+cd .. ( move up , parent directory ) 
+releative path 
+cd ./subdirectory/dir4
+cd ../sibling-directory
+cd dir1/dir2/dir3
+
+
+#################################################################################################################################### 
+################################# pwd ################################# 
+used to display the current working directory path
+pwd 
+
+Logical Path vs Physical Path
+Logical  Path  - The default behavior of pwd is to show the logical path, which respects symbolic links.
+pwd -L 
+Physical Path  - Shows the physical path, which resolves all symbolic links to their actual locations.
+pwd -P 
+
+
+
+#################################################################################################################################### 
+################################# cat ################################# 
+used to concatenate and display the content of files.
+used for viewing and managing text files.
+The name "cat" is short for "concatenate," which means to link things together in a series.
+
+  
+cat [options] [file...]
+
+display file/s
+  cat filename.txt
+  cat file1.txt file2.txt
+redirect output to new file
+  cat file1.txt file2.txt > new_combined.txt
+Append Output to an Existing File
+  cat file1.txt >> file2.txt
+
+Create a New File with cat
+  cat > newfile.txt
+  After running this command, you can type the content for the new file. Press Ctrl+D to save and exit.
+  
+Append Content to an Existing File:
+  cat >> existingfile.txt
+  After running this command, you can type the content to be appended. Press Ctrl+D to save and exit.
+
+More & Less options: 
+If a file having a large number of content that won’t fit in the output terminal then more & less options can be used to indiate additional content.
+cat file_name1.txt | more
+cat file_name1.txt | less
+
+######### Options
+-n --> shows output with line no.
+-b --> This will number only the non-empty lines in the output. ( overrides -n )
+
+-e --> display end of line character 
+-T --> display tabs
+-A --> show all ( end of line and tabs ...., -eT )
+
+-s --> suppress repeated empty lines ( removes Extra Blank Lines but 1 )
+more and less --> used to indiate additional content
+
+Others
+cat -n file1.txt file2.txt > combined.txt
+
+
+
+#################################################################################################################################### 
+################################# cp ################################# 
+used to copy files and directories. 
+It stands for "copy" and is a powerful tool for duplicating content within the filesystem
+cp [options] source destination
+
+# Copy a File
+  cp file1 file2 
+  if destination exists overwrite , else creates new file and copy the data   
+  cp -i file1.txt file2.txt
+  If file2.txt exists, you will be prompted to confirm the overwrite.
+  cp -n file1.txt file2.txt
+  If file2.txt exists, does not overwrite , else creates new file and copy the data 
+  
+
+# Copy Multiple Files to a Directory
+  cp file1.txt file2.txt /dir1/dir2/
+  cp file1.txt file2.txt /path/to/destination/
+# Copy a Directory ( & their content ) 
+  cp -r dir1/ dir2/
+  -r is required to copy directoryr 
+  This copies the entire dir1 directory to dir2. The -r option stands for "recursive," which is necessary for copying directories.
+
+######## Options 
+-r or -R ( recursive copy ) , required to copy directory 
+-i Iterative copy
+-n avoid overriding without prompt
+-p preserve attributes ( mode , permission ,timestamps )
+-s Create symbolic links instead of copying files
+-v verbose mode - detailed output of the copying process 
+
+####### Use cases 
+cp   *.txt   /path/to/destination/
+
+
+
+
+#################################################################################################################################### 
+################################# rm ################################# 
+used to remove (delete) files and directories
+rm [options] file...
+
+
+rm file1.txt
+rm -i file1.txt
+rm -f file1.txt
+rm file1.txt file2.txt file3.txt
+
+# Remove a Directory and Its Contents:
+rm -r directory_name
+The -r (recursive) option is necessary to delete a directory and its contents.
+
+
+###### options 
+-i Interactive mode - Prompt before every removal
+-r or -R recursive removal - used for Delete directories and their contents.
+-f force removal - Suppress prompts and ignore nonexistent files ( suppress -i )
+-I Interactive ONCE - ask for confirmation once before deleting all files in the current directory.
+-v Show what is being done.
+
+###### Use cases
+rm -riv /dir1
+rm -rf /home/user/temp/*
+rm -rf file.txt
+
+
+
+
+
+#################################################################################################################################### 
+################################# rmdir ################################# 
+used to remove empty directories
+rmdir is specifically designed for deleting directories that do not contain any files or subdirectories
+Unlike the rm command, which can remove files and directories (even if they are not empty), 
+rmdir will only remove empty directories. If the directory contains files or other directories, you will need to use rm -r to remove it.
+
+rm    -> deletes both type ( empty or non-empty )
+rmdir ->  deletes only empty directory/ies 
+
+rmdir [options] directory
+
+If the directory doe not contains any files or subdirectories -->  Empty directory
+
+
+rmdir empty_directory
+rmdir dir1 dir2 dir3
+
+rmdir dir1/dir2/dir3 ( removes only last directory only if it is empty )
+rmdir -p dir1/dir2/dir3 ( to delete nested directory if all are empty )
+
+
+###### options 
+-p parents ( compulsory while deleting nested directory  )
+-v verbose ( Output a message for each removed directory )
+
+###### Use cases 
+mkdir -p dir1/dir2/dir3
+rmdir -pv dir1/dir2/dir3/
+
+find /path/to/search -type d -empty -exec rmdir {} \
+
+
+
+
+
+
+
+################################# home ################################# 
+Root Directory (/):
+cd /
+ls /
+Output - bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+Home Directory - 
+Location: A subdirectory under the root directory.
+cd ~  or cd 
+Path like --> c/Users/HP
+
+
+
