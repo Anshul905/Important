@@ -1,0 +1,10 @@
+############ Newly LinkedList ans is created ############
+ListNode* ans = new ListNode(-1) ;
+ListNode* curAns = ans ;
+
+// Adding node
+ListNode* temp = new ListNode(sum) ;
+curAns->next = temp ;
+curAns = curAns->next ;
+
+return ans->next ;
