@@ -1,0 +1,24 @@
+
+git stash (  Git will not automatically include Untracked Files in a stash. )
+if u want to add Untracked Files in stash --> use "git stash -u"
+
+you can do anything now ( commit , and whenever you want to do anything with stashed changes you can use "git stash pop"
+
+you can stash any no of changes --> can see using "git stash list" 
+
+
+"git stash" --> saves your local modifications and reverts your working directory to match the last commit ( does not included Untracked Files )
+"git stash -u" --> also includes Untracked Files 
+check git status
+
+"git stash pop [<stash>]"  --> to reapply the changes ( in LIFO manner )you previously saved with git stash and then remove the stash entry from the stash list.
+                           --> latest one will be popped out first
+"git stash pop"         --> If you don’t specify a stash, it applies the most recent one
+
+
+"git stash apply [<stash>]" --> same as pop but stash entry is not removed from the stash list after applying it. 
+                            --> This means you can apply the same stash multiple times or keep it for future use.
+"git stash apply " --> If you don’t specify a stash, it applies the most recent one
+
+
+"git stash list" --> list of all stashes 
