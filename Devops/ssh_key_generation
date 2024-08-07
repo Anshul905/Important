@@ -1,0 +1,29 @@
+If you already have a SSH key, then don't a generate new key, as they will be overwritten. You can use ssh-keygen command
+
+>>ssh-keygen -t rsa -C "aneekhara@some.com"
+
+When you run the above command, it will create 2 files in the ~/.ssh directory. ( id_rsa , id_rsa.pub )
+~/.ssh/id_rsa − It is private key or identification key.
+~/.ssh/id_rsa.pub − It is a public tv.
+
+when you are using server - .ssh will be generated at the root folder 
+Your identification has been saved in /data/home/svc_tas_int/.ssh/id_rsa.
+Your public key has been saved in /data/home/svc_tas_int/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:randomThing2 aneekhara@some.com
+eg - svc_tas_int@awsmblx500bs024
+	/data/home/svc_tas_int
+
+if you are using normal gitbash shell - .ssh/ will be generated in that directory only  
+
+>>cd 
+to go to gome directory 
+( in server - /data/home/svc_tas_int , and public key at /data/home/svc_tas_int/.ssh/id_rsa.pub )
+
+>> cat .ssh/id_rsa.pub
+ssh-rsa randomThing aneekhara@some.com
+
+
+connect it to server ( paste the public key in the gerrit , profile -> setting -> ssh key ) 
+
+Now you can use the commands like clone , pull , cherry-pick ....
