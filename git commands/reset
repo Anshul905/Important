@@ -99,7 +99,8 @@ Instead of HEAD any Git SHA-1 <commit-id> hash can be used
 
 ######## --hard 
 1. reset the commit tree to the specified commit 
-2. discarding all changes in the working directory and the staging area. ( irreversibly ) 
+2. Discard all changes in the working directory and the staging area but does not touch untracked files. ( irreversibly ) 
+3. It will reset tracked files to the last commit but does not touch untracked files.
 
 This means any pending work that was hanging out in the Staging Index and Working Directory will be lost.
 
